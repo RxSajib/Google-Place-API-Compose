@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)){
                         PlacesAutoComplete { placeId ->
-                            Log.d(TAG, "Selected Place ID: $placeId")
+                            Log.d(TAG, "Selected Place ID: $placeId.get")
                             openPlaceInGoogleMaps(context, placeId)
                         }
                     }
