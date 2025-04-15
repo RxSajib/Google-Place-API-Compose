@@ -3,7 +3,6 @@ package com.theme.googleplaceapi
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -14,11 +13,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import com.theme.googleplaceapi.ui.theme.GooglePlaceAPITheme
 import androidx.core.net.toUri
 
@@ -32,10 +28,13 @@ class MainActivity : ComponentActivity() {
                 val context = LocalContext.current
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)){
-                        PlacesAutoComplete { placeId ->
-                            Log.d(TAG, "Selected Place ID: $placeId.get")
-                            openPlaceInGoogleMaps(context, placeId)
-                        }
+                        
+                        PlacesAutoComplete(location = {lat, lng ->
+                            Log.d(TAG, "onCreate: $lat $lng")
+                            openPlaceInGoogleMaps(context = context, lat.toString())
+                        }, onPlaceSelected = {
+                            
+                        }) 
                     }
                 }
             }
