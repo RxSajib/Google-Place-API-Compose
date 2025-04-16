@@ -2,11 +2,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    kotlin("plugin.serialization") version "2.1.20"
 }
 
 android {
     namespace = "com.theme.googleplaceapi"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.theme.googleplaceapi"
@@ -58,5 +60,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.places)
+    implementation("com.google.maps.android:maps-compose:6.5.2")
+// Optionally, you can include the Compose utils library for Clustering,
+// Street View metadata checks, etc.
+    implementation("com.google.maps.android:maps-compose-utils:6.5.2")
+    implementation("com.google.maps.android:maps-compose-widgets:6.5.2")
+    implementation("androidx.navigation:navigation-compose:2.8.9")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
 }

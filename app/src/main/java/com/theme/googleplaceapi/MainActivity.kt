@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.theme.googleplaceapi.ui.theme.GooglePlaceAPITheme
 import androidx.core.net.toUri
+import com.theme.googleplaceapi.navigation.Navigation
 
 private const val TAG = "MainActivity"
 class MainActivity : ComponentActivity() {
@@ -25,18 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GooglePlaceAPITheme {
-                val context = LocalContext.current
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box(modifier = Modifier.padding(innerPadding)){
-                        
-                        PlacesAutoComplete(location = {lat, lng ->
-                            Log.d(TAG, "onCreate: $lat $lng")
-                            openPlaceInGoogleMaps(context = context, lat.toString())
-                        }, onPlaceSelected = {
-                            
-                        }) 
-                    }
-                }
+                Navigation()
             }
         }
     }
